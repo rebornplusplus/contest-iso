@@ -1,4 +1,6 @@
-for bashfile in $(find scripts/*.sh | sort); do
+shdir="scripts"
+
+for bashfile in $(cat $shdir/run_order.txt | sort); do
 	echo -e "\nExecuting $bashfile ...\n"
-	bash $bashfile
+	bash "$shdir/$bashfile"
 done
