@@ -1,5 +1,6 @@
 dist_upgrade.sh
 google_chrome.sh
+gcc_10.sh
 python3.10.sh
 openssh_server.sh
 dist_upgrade.sh
