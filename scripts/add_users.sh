@@ -6,3 +6,5 @@ usermod -aG sudo $ADMIN_USER
 
 echo "Creating team account, $TEAM_USER..."
 useradd --create-home --password $(echo $TEAM_PASSWORD) --shell /bin/bash $TEAM_USER
+
+chmod -R -v 750 /home/*
