@@ -1,0 +1,19 @@
+" {{{ view/edit options
+syntax on
+set termguicolors                      " use full 24-bit color
+set number                             " show line numbers
+set autoindent                         " automatic indent
+set foldmethod=syntax                  " syntax based folding
+set nofoldenable                       " don't open file in folds
+set cursorline                         " highlight the line under cursor
+set laststatus=2                       " show status bar
+set linebreak                          " don't break words
+set scrolloff=5                        " let 5 lines after cursor
+set showcmd                            " show commands
+set wildmenu                           " display all matching files when we tab-complete
+set tabstop=4                          " tab size in columns
+set shiftwidth=4                       " indentation size
+                                       " https://medium.com/@arisweedler/tab-settings-in-vim-1ea0863c5990
+set noexpandtab                        " don't insert spaces, default
+set backspace=indent,eol,start         " get backspace to work on these situations
+" }}}
