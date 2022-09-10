@@ -1,3 +1,4 @@
 google_chrome.sh
+openssh_server.sh
 add_users.sh
 copy_dots.sh
