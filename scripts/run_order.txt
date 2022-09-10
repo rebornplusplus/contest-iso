@@ -1,5 +1,7 @@
+dist_upgrade.sh
 google_chrome.sh
 python3.10.sh
 openssh_server.sh
+dist_upgrade.sh
 add_users.sh
 copy_dots.sh
