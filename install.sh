@@ -1,6 +1,6 @@
-shdir="scripts"
+source vars.sh
 
-for bashfile in $(cat $shdir/run_order.txt); do
+for bashfile in $(cat $SCRIPTS_DIR/run_order.txt); do
 	echo -e "\nExecuting $bashfile ...\n"
-	bash "$shdir/$bashfile"
+	bash "$SCRIPTS_DIR/$bashfile"
 done
