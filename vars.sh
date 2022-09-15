@@ -1,5 +1,6 @@
 DOTS_DIR="dots"
 SCRIPTS_DIR="scripts"
+ADMIN_SCRIPTS_DIR="adm"
 
 ADMIN_USER="admin"
 ADMIN_PASSWORD='$1$LtX9W/eY$/VhdLxLcS2lqzWX6Jxe1i1'

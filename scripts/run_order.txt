@@ -6,3 +6,4 @@ openssh_server.sh
 dist_upgrade.sh
 add_users.sh
 copy_dots.sh
+copy_admin_scripts.sh
