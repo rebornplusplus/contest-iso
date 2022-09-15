@@ -2,7 +2,7 @@ source vars.sh
 
 cd $DOTS_DIR
 
-for user in $(echo "$ADMIN_USER $TEAM_USER"); do
+for user in $(echo "$ADMIN_USER $TEAM_USER $MOCK_USER"); do
 	homedir="/home/$user"
 	for file in .[^.]*; do
 		cp -rv $file "$homedir/"
