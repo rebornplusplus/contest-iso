@@ -4,6 +4,6 @@ gcc_10.sh
 python3.10.sh
 openssh_server.sh
 dist_upgrade.sh
-add_users.sh
 copy_dots.sh
+add_users.sh
 copy_admin_scripts.sh
