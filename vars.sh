@@ -3,13 +3,13 @@ SCRIPTS_DIR="scripts"
 ADMIN_SCRIPTS_DIR="adm"
 
 ADMIN_USER="admin"
-ADMIN_PASSWORD='$1$LtX9W/eY$/VhdLxLcS2lqzWX6Jxe1i1'
-# encrypted with $(openssl passwd -1 PLAINTEXTPASSWORD)
+ADMIN_PASSWORD='$1$VU/x12jA$HX8Mo2tNRuq/4tKAJm84n0'
+# encrypted with $(openssl passwd -1 -salt VU/x12jA PLAINTEXTPASSWORD)
 
 TEAM_USER="main"
-TEAM_PASSWORD='$1$XLFIZ0Ic$0SU1LKp9EGR4QaT3CNZo6.'
-# encrypted with $(openssl passwd -1 PLAINTEXTPASSWORD)
+TEAM_PASSWORD='$1$VU/x12jA$.F6/xJJu.bmS4fnkHH/Wd/'
+# encrypted with $(openssl passwd -1 -salt VU/x12jA PLAINTEXTPASSWORD)
 
-MOCK_USER="rehearsal"
-MOCK_PASSWORD='$1$BaSyPmko$ufozJEmy102/DGdgOqvSb/'
-# encrypted with $(openssl passwd -1 PLAINTEXTPASSWORD)
+MOCK_USER="mock"
+MOCK_PASSWORD='$1$VU/x12jA$hYaam/dyMDBuL.SPYFpYz0'
+# encrypted with $(openssl passwd -1 -salt VU/x12jA PLAINTEXTPASSWORD)
