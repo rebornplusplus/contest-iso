@@ -2,5 +2,4 @@
 echo "Installing Codeblocks ..."
 
 add-apt-repository universe -y
-apt install -y codeblocks
-apt install codeblocks-contrib -y
+apt install -y codeblocks codeblocks-contrib
