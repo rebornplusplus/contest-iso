@@ -1,3 +1,5 @@
+set -eux
+
 echo "Installing VS Code ..."
 # https://code.visualstudio.com/docs/setup/linux
 
