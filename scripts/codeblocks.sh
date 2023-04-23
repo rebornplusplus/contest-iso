@@ -1,3 +1,5 @@
+set -eux
+
 # https://linuxhint.com/install-code-blocks-ubuntu/
 echo "Installing Codeblocks ..."
 
