@@ -3,6 +3,7 @@ add_repo.sh
 google_chrome.sh
 gcc_10.sh
 python3.10.sh
+openjdk17.sh
 openssh_server.sh
 code.sh
 codeblocks.sh
