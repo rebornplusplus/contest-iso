@@ -1,6 +1,6 @@
 set -eux
 
-echo "Installing IntelliJ IDEA Community Edition ..."
+echo "\nInstalling IntelliJ IDEA Community Edition ...\n"
 snap install intellij-idea-community --classic
-echo "Priniting IntelliJ IDEA version ..."
+echo "\nPrinting IntelliJ IDEA version ...\n"
 intellij-idea-community --version

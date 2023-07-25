@@ -1,6 +1,6 @@
 set -eux
 
-echo "Installing PyCharm Community Edition ..."
+echo "\nInstalling PyCharm Community Edition ...\n"
 snap install pycharm-community --classic
-echo "Priniting PyCharm version ..."
+echo "\nPrinting PyCharm version ...\n"
 pycharm-community --version

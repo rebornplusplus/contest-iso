@@ -1,6 +1,6 @@
 set -eux
 
-echo "Installing Emacs ..."
+echo "\nInstalling Emacs ...\n"
 apt install -y emacs
-echo "Priniting Emacs version ..."
+echo "\nPrinting Emacs version ...\n"
 emacs --version

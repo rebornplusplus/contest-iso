@@ -1,8 +1,8 @@
 set -eux
 
-echo "Installing OpenJDK 17 ..."
+echo "\nInstalling OpenJDK 17 ...\n"
 apt install -y openjdk-17-jdk openjdk-17-jre
-echo "Priniting Java version ..."
+echo "\nPrinting Java version ...\n"
 java --version
-echo "Priniting Java compiler version ..."
+echo "\nPrinting Java compiler version ...\n"
 javac --version

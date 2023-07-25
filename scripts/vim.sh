@@ -1,6 +1,6 @@
 set -eux
 
-echo "Installing Vim ..."
-apt install -y vim
-echo "Priniting Vim version ..."
+echo "\nInstalling Vim ...\n"
+apt install -y vim-gtk3
+echo "\nPrinting Vim version ...\n"
 vim --version
