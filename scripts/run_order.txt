@@ -1,4 +1,5 @@
 dist_upgrade.sh
+add_repo.sh
 google_chrome.sh
 gcc_10.sh
 python3.10.sh
