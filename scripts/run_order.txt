@@ -7,6 +7,8 @@ openjdk17.sh
 openssh_server.sh
 code.sh
 codeblocks.sh
+pycharm_community.sh
+intellij_idea_community.sh
 sublime.sh
 vim.sh
 emacs.sh
