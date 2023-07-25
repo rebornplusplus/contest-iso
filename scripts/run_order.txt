@@ -6,6 +6,7 @@ python3.10.sh
 openssh_server.sh
 code.sh
 codeblocks.sh
+sublime.sh
 dist_upgrade.sh
 copy_dots.sh
 add_users.sh
