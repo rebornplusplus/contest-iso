@@ -9,6 +9,7 @@ codeblocks.sh
 sublime.sh
 vim.sh
 emacs.sh
+geany.sh
 dist_upgrade.sh
 copy_dots.sh
 add_users.sh
