@@ -1,24 +1,33 @@
+#!/bin/bash
+
 set -eux
 
 PYCHARM_VERSION="2023.1.4"
-PYCHARM_NAME="pycharm-community-$PYCHARM_VERSION"
-SOURCE_URL="https://download.jetbrains.com/python/$PYCHARM_NAME.tar.gz"
-SOURCE_SHA256_URL="$SOURCE_URL.sha256"
 
-echo "\nInstalling PyCharm Community Edition $PYCHARM_VERSION ...\n"
+echo "Install Pycharm Community $PYCHARM_VERSION .."
 
-apt install -y wget
-wget $SOURCE_URL -O $PYCHARM_NAME.tar.gz
+# download pycharm community edition
+# wget "data.services.jetbrains.com/products/download?code=PCC&platform=linux" -O pycharm.tar.gz
+wget -c "https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSION}.tar.gz"
 
-wget $SOURCE_SHA256_URL -O expected_sha256sum.txt
-sha256sum $PYCHARM_NAME.tar.gz >> actual_sha256sum.txt
+# extract and keep the files in /opt
+tar -zxvf "pycharm-community-${PYCHARM_VERSION}.tar.gz"
+mv "pycharm-${PYCHARM_VERSION}" /opt
 
-cat actual_sha256sum.txt | sha256sum -c expected_sha256sum.txt
-tar xzf $PYCHARM_NAME.tar.gz -C /opt/
+# populate desktop entry
+cat > jetbrains-pycharm.desktop << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm Community Edition
+Icon=/opt/pycharm/bin/pycharm.svg
+Exec="/opt/pycharm/bin/pycharm.sh" %f
+Comment=Python IDE for Developers
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-pycharm
+StartupNotify=true
+EOF
 
-rm actual_sha256sum.txt expected_sha256sum.txt
-rm $PYCHARM_NAME.tar.gz
-
-# TODO: configure pycharm
-
-echo "\nPrinting PyCharm version ...\n"
+# copy the desktop entry to appropriate location
+mv jetbrains-pycharm.desktop /usr/share/applications/
