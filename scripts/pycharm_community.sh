@@ -12,7 +12,7 @@ wget -c "https://download.jetbrains.com/python/pycharm-community-${PYCHARM_VERSI
 
 # extract and keep the files in /opt
 tar -zxvf "pycharm-community-${PYCHARM_VERSION}.tar.gz"
-mv "pycharm-${PYCHARM_VERSION}" /opt
+mv "pycharm-community-${PYCHARM_VERSION}" /opt
 
 # populate desktop entry
 cat > jetbrains-pycharm.desktop << EOF
