@@ -3,6 +3,7 @@
 set -eux
 
 PYCHARM_VERSION="2023.1.4"
+PYCHARM_NAME="pycharm-community-${PYCHARM_VERSION}"
 
 echo "\nInstall Pycharm Community $PYCHARM_VERSION ..\n"
 
@@ -23,13 +24,13 @@ mv "pycharm-community-${PYCHARM_VERSION}" /opt
 rm "pycharm-community-${PYCHARM_VERSION}.tar.gz" actual_sha256sum.txt expected_sha256sum.txt
 
 # populate desktop entry
-cat > jetbrains-pycharm.desktop << EOF
+cat > jetbrains-pycharm-ce.desktop << EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=PyCharm Community Edition
-Icon=/opt/pycharm/bin/pycharm.svg
-Exec="/opt/pycharm/bin/pycharm.sh" %f
+Icon=/opt/$PYCHARM_NAME/bin/pycharm.svg
+Exec="/opt/$PYCHARM_NAME/bin/pycharm.sh" %f
 Comment=Python IDE for Developers
 Categories=Development;IDE;
 Terminal=false
@@ -38,4 +39,4 @@ StartupNotify=true
 EOF
 
 # copy the desktop entry to appropriate location
-mv jetbrains-pycharm.desktop /usr/share/applications/
+mv jetbrains-pycharm-ce.desktop /usr/share/applications/
