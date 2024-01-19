@@ -18,4 +18,4 @@ sudo apt-get update -y
 sudo apt-get install -y kubectl
 
 kubectl --help
-kubectl version
+kubectl version --client
