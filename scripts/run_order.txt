@@ -13,6 +13,9 @@ sublime.sh
 vim.sh
 emacs.sh
 geany.sh
+docker.sh
+minikube.sh
+kubectl.sh
 dist_upgrade.sh
 copy_dots.sh
 add_users.sh
