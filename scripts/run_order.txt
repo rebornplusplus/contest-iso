@@ -1,7 +1,7 @@
 dist_upgrade.sh
 add_repo.sh
 google_chrome.sh
-gcc_10.sh
+gcc-12.sh
 python3.10.sh
 openjdk17.sh
 openssh_server.sh
