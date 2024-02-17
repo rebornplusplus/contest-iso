@@ -1,20 +1,52 @@
+# === Upgrade packages ===
+
 dist_upgrade.sh
+
+# === Add multiple repos ===
+
 add_repo.sh
+
+# === Remove unnecessary packages ===
+
 trim.sh
+
+# === Install packages ===
+
+# --- Browsers ---
 google_chrome.sh
+
+# --- Compilers ---
 gcc-12.sh
 python3.11.sh
 openjdk17.sh
-openssh_server.sh
-code.sh
-codeblocks.sh
-pycharm_community.sh
-intellij_idea_community.sh
-sublime.sh
+
+# --- Editors ---
 vim.sh
 emacs.sh
+code.sh
+sublime.sh
+
+# --- IDEs ---
+codeblocks.sh
 geany.sh
+pycharm_community.sh
+intellij_idea_community.sh
+
+# --- Additional support packages ---
+openssh_server.sh
+
+# === Upgrade packages ===
+
 dist_upgrade.sh
+
+# === Copy universal dot files ===
+
 copy_dots.sh
+
+# === Create users ===
+
 add_users.sh
+
+# === Copy user-specific files ===
+
 copy_admin_scripts.sh
