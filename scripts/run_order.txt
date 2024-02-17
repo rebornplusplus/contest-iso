@@ -1,5 +1,6 @@
 dist_upgrade.sh
 add_repo.sh
+trim.sh
 google_chrome.sh
 gcc-12.sh
 python3.11.sh
