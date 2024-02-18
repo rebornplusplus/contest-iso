@@ -7,14 +7,18 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
-    name: Build
+  run-scripts:
+    name: Run scripts
     runs-on: ubuntu-22.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
+      - name: Tweak options to run on GitHub
+        run: |
+          # Ignore user-specific scripts for GitHub runners
+          sed -i 's/add_users.sh//g' scripts/run_order.txt
+          sed -i 's/copy_admin_scripts.sh//g' scripts/run_order.txt
+
       - name: Run the scripts
         run: |
-          sudo bash install.sh
+          sudo ./install.sh
