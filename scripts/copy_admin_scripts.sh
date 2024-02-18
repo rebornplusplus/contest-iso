@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -eux
+
 source vars.sh
 
 cd $ADMIN_SCRIPTS_DIR

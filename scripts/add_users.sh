@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -eux
+
 source vars.sh
 
 echo "Creating admin account, $ADMIN_USER..."

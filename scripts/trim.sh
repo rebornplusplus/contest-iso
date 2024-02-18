@@ -1,10 +1,10 @@
 #!/bin/bash
 
+set -eux
+
 # This script trims down the base Ubuntu 22.04 rootfs.
 # It removes unnecessary (for our purposes) packages like
 # thunderbird, libreoffice, rhythmbox, aisleriot etc.
-
-set -eux
 
 apt remove -y --purge \
 	aisleriot \

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -eux
 
 # https://www.sublimetext.com/docs/linux_repositories.html#apt

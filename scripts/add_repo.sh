@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -eux
 
 echo "Enabling universe repo.."
