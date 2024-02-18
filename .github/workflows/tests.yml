@@ -15,8 +15,9 @@ jobs:
 
       - name: Tweak options to run on GitHub
         run: |
-          # Github runners already have a "admin" group.
-          sed -i 's/ADMIN_USER="admin"/ADMIN_USER="dummy-admin"/g' vars.sh
+          # Ignore user-specific scripts for GitHub runners
+          sed -i 's/add_users.sh//g' scripts/run_order.txt
+          sed -i 's/copy_admin_scripts.sh//g' scripts/run_order.txt
 
       - name: Run the scripts
         run: |
