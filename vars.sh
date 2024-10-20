@@ -4,7 +4,7 @@ set -eux
 
 DOTS_DIR="dots"
 SCRIPTS_DIR="scripts"
-ADMIN_SCRIPTS_DIR="adm"
+ADMIN_SCRIPTS_DIR="postinst/admin/"
 
 ADMIN_USER="admin"
 ADMIN_PASSWORD='$1$qOaJpMTn$udSLvrlWWiT43He1M2wy5.'

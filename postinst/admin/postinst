@@ -1,0 +1,196 @@
+#!/bin/bash
+
+set -eu
+
+LOGFILE="$(mktemp -p "$PWD")"
+echo "Logging at $LOGFILE ..."
+
+# Write bash trace to log file.
+exec 69> "$LOGFILE"
+BASH_XTRACEFD=69
+set -x
+
+export DEBIAN_FRONTEND=noninteractive
+
+log() {
+  $@ >> "$LOGFILE"
+}
+
+run_as_root() {
+  local run_pref
+  run_pref="sudo"
+  if [[ "$USER" == "root" ]]; then
+    run_pref=""
+  fi
+  $run_pref $@
+}
+
+update_packages() {
+  echo -n "Updating packages... "
+
+  log run_as_root apt-get update
+  log run_as_root apt-get dist-upgrade -y
+  log run_as_root apt-get autoremove -y
+
+  echo "DONE"
+}
+
+check_version() {
+  local current minimal
+  current="$1"
+  minimal="$2"
+  latest="$(echo -e "$current\n$minimal" | sort -Vr | head -1)"
+  ([ "$latest" == "$current" ] && echo "OK") \
+    || (echo -e "OUTDATED (Current: $current, Available: >$minimal)" && false)
+}
+
+check_gcc() {
+  local version cmd="gcc"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
+  check_version "$version" "11.4.0"
+}
+
+check_gpp() {
+  local version cmd="g++"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
+  check_version "$version" "12.3.0"
+}
+
+check_java() {
+  local version cmd="java"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | head -1 | grep -Po "\d+\.\d+\.\d+")"
+  check_version "$version" "17.0.12"
+}
+
+check_python() {
+  local version cmd="python3"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
+  check_version "$version" "3.10.12"
+}
+
+check_vim() {
+  local version cmd="vim"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | head -1 | grep -Po "\d+\.\d+")"
+  check_version "$version" "8.2"
+}
+
+check_emacs() {
+  local version cmd="emacs"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | head -1 | grep -Po "\d+\.\d+$")"
+  check_version "$version" "27.1"
+}
+
+check_nano() {
+  local version cmd="nano"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | head -1 | grep -Po "\d+\.\d+$")"
+  check_version "$version" "6.2"
+}
+
+check_sublime_text() {
+  local version cmd="subl"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+$")"
+  check_version "$version" "4180"
+}
+
+check_vscode() {
+  local version cmd="code"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "^\d+\.\d+\.\d+$")"
+  check_version "$version" "1.94.2"
+}
+
+check_gedit() {
+  local version cmd="gedit"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+\.\d+$")"
+  check_version "$version" "41.0"
+}
+
+check_geany() {
+  local version cmd="geany"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | cut -d '(' -f 1 | grep -Po "\d+\.\d+")"
+  check_version "$version" "1.38"
+}
+
+check_pycharm() {
+  local version cmd
+  echo -n "Checking pycharm ("
+  cmd="$(find /opt/pycharm-*/bin/pycharm.sh)"
+  echo -n "$(which $cmd))... "
+  version="$($cmd --version | grep "PyCharm" | grep -Po "\d+\.\d+\.\d+")"
+  check_version "$version" "2023.3.3"
+}
+
+check_intellij() {
+  local version cmd
+  echo -n "Checking intellij ("
+  cmd="$(find /opt/idea-*/bin/idea.sh)"
+  echo -n "$(which $cmd))... "
+  version="$($cmd --version | grep "IntelliJ" | grep -Po "\d+\.\d+\.\d+")"
+  check_version "$version" "2023.3.4"
+}
+
+check_packages() {
+  check_gcc
+  check_gpp
+  check_java
+  check_python
+  check_vim
+  check_emacs
+  check_nano
+  check_sublime_text
+  # check_vscode
+  check_gedit
+  check_geany
+  check_pycharm
+  check_intellij
+}
+
+update_users() {
+  echo -n "Updating users... "
+
+  ADMIN_USER="admin"
+  ADMIN_PASS='$1$Rd490TmZ$kTNwQiGJFah4t/NRqUd1e1'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
+  run_as_root usermod --password $(echo $ADMIN_PASS) "$ADMIN_USER"
+  run_as_root getent shadow "$ADMIN_USER" | cut -d':' -f2 | grep -q $(echo $ADMIN_PASS)
+
+  TEAM_USER="main"
+  TEAM_PASS='$1$Rd490TmZ$MDQCGg2d6Q1sJrg80UViF0'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
+  run_as_root usermod --password $(echo $TEAM_PASS) "$TEAM_USER"
+  run_as_root getent shadow "$TEAM_USER" | cut -d':' -f2 | grep -q $(echo $TEAM_PASS)
+
+  MOCK_USER="mock"
+  MOCK_PASS='$1$Rd490TmZ$/CEXDyrKsM6Ylw6TuWum6.'   # openssl passwd -1 -salt Rd490TmZ 'mock'
+  run_as_root usermod --password $(echo $MOCK_PASS) "$MOCK_USER"
+  run_as_root getent shadow "$MOCK_USER" | cut -d':' -f2 | grep -q $(echo $MOCK_PASS)
+
+  echo "DONE"
+}
+
+enable_ssh() {
+  echo -n "Starting ssh... "
+
+  sudo systemctl enable ssh
+  sudo systemctl start ssh
+
+  sudo ufw enable
+  sudo ufw allow ssh
+
+  echo "DONE"
+}
+
+update_packages
+check_packages
+
+update_users
+
+enable_ssh
