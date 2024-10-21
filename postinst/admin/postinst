@@ -148,7 +148,7 @@ check_packages() {
   check_emacs
   check_nano
   check_sublime_text
-  # check_vscode
+  check_vscode
   check_gedit
   check_geany
   check_pycharm
