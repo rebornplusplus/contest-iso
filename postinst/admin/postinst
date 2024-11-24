@@ -103,7 +103,7 @@ check_sublime_text() {
 check_vscode() {
   local version cmd="code"
   echo -n "Checking $cmd ($(which $cmd))... "
-  version="$($cmd --version | grep -Po "^\d+\.\d+\.\d+$")"
+  version="$($cmd --version --no-sandbox --user-data-dir /tmp | grep -Po "^\d+\.\d+\.\d+$")"
   check_version "$version" "1.94.2"
 }
 
