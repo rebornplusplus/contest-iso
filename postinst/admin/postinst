@@ -12,6 +12,14 @@ set -x
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Team usernames and passwords (newly updated ones).
+ADMIN_USER="admin"
+ADMIN_PASS='$1$Rd490TmZ$kTNwQiGJFah4t/NRqUd1e1'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
+TEAM_USER="main"
+TEAM_PASS='$1$Rd490TmZ$MDQCGg2d6Q1sJrg80UViF0'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
+MOCK_USER="mock"
+MOCK_PASS='$1$Rd490TmZ$/CEXDyrKsM6Ylw6TuWum6.'   # openssl passwd -1 -salt Rd490TmZ 'mock'
+
 log() {
   $@ >> "$LOGFILE"
 }
@@ -158,18 +166,12 @@ check_packages() {
 update_users() {
   echo -n "Updating users... "
 
-  ADMIN_USER="admin"
-  ADMIN_PASS='$1$Rd490TmZ$kTNwQiGJFah4t/NRqUd1e1'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
   run_as_root usermod --password $(echo $ADMIN_PASS) "$ADMIN_USER"
   run_as_root getent shadow "$ADMIN_USER" | cut -d':' -f2 | grep -q $(echo $ADMIN_PASS)
 
-  TEAM_USER="main"
-  TEAM_PASS='$1$Rd490TmZ$MDQCGg2d6Q1sJrg80UViF0'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
   run_as_root usermod --password $(echo $TEAM_PASS) "$TEAM_USER"
   run_as_root getent shadow "$TEAM_USER" | cut -d':' -f2 | grep -q $(echo $TEAM_PASS)
 
-  MOCK_USER="mock"
-  MOCK_PASS='$1$Rd490TmZ$/CEXDyrKsM6Ylw6TuWum6.'   # openssl passwd -1 -salt Rd490TmZ 'mock'
   run_as_root usermod --password $(echo $MOCK_PASS) "$MOCK_USER"
   run_as_root getent shadow "$MOCK_USER" | cut -d':' -f2 | grep -q $(echo $MOCK_PASS)
 
@@ -188,9 +190,17 @@ enable_ssh() {
   echo "DONE"
 }
 
+change_wallpapers() {
+  . chngbg
+  run_as_root update_bg "$TEAM_USER" "$BG_MAIN"
+  run_as_root update_bg "$MOCK_USER" "$BG_MOCK"
+}
+
 update_packages
 check_packages
 
 update_users
 
 enable_ssh
+
+change_wallpapers

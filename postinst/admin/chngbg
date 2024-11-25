@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# This script sets the backgrounds of "main" and "mock" users.
+
+set -eu
+
+# Image file paths.
+BG_MAIN="bg/main.png"
+BG_MOCK="bg/mock.png"
+
+# Formats the path in the gsettings format, e.g. file:///path/to/file
+gsettings_path() {
+  local relpath="$1"
+  local dir
+  dir="$(dirname "$(realpath "$0")")"
+  echo "$dir/$relpath"
+}
+
+update_bg() {
+  local user="$1"
+  local bgpath="$2" # relative path (either BG_MAIN or BG_MOCK)
+  fpath=$(gsettings_path "$bgpath")
+  # For light mode.
+  sudo -H -u "$user" \
+    gsettings set org.gnome.desktop.background picture-uri "$fpath"
+  # For dark mode.
+  sudo -H -u "$user" \
+    gsettings set org.gnome.desktop.background picture-uri-dark "$fpath"
+}
