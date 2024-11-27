@@ -204,18 +204,24 @@ update_bg() {
   local user="$1"
   local bgpath="$2" # absolute path
   # For light mode.
-  sudo -H -u "$user" \
-    dbus-launch gsettings set org.gnome.desktop.background picture-uri "file://$bgpath"
+  log sudo -H -u "$user" \
+    dbus-launch \
+    gsettings set org.gnome.desktop.background picture-uri "file://$bgpath"
   # For dark mode.
-  sudo -H -u "$user" \
-    dbus-launch gsettings set org.gnome.desktop.background picture-uri-dark "file://$bgpath"
+  log sudo -H -u "$user" \
+    dbus-launch \
+    gsettings set org.gnome.desktop.background picture-uri-dark "file://$bgpath"
 }
 
 change_backgrounds() {
+  echo -n "Changing backgrounds..."
+
   run_as_root cp "$BG_MAIN" "/usr/share/backgrounds/$TEAM_USER.png"
   run_as_root update_bg "$TEAM_USER" "/usr/share/backgrounds/$TEAM_USER.png"
   run_as_root cp "$BG_MOCK" "/usr/share/backgrounds/$MOCK_USER.png"
   run_as_root update_bg "$MOCK_USER" "/usr/share/backgrounds/$MOCK_USER.png"
+
+  echo "DONE"
 }
 
 change_backgrounds
