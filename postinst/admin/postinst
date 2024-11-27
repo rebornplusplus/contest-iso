@@ -216,6 +216,7 @@ update_bg() {
 change_backgrounds() {
   echo -n "Changing backgrounds..."
 
+  run_as_root apt install dbus-x11
   run_as_root cp "$BG_MAIN" "/usr/share/backgrounds/$TEAM_USER.png"
   run_as_root update_bg "$TEAM_USER" "/usr/share/backgrounds/$TEAM_USER.png"
   run_as_root cp "$BG_MOCK" "/usr/share/backgrounds/$MOCK_USER.png"
