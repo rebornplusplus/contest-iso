@@ -37,7 +37,7 @@ update_packages() {
   echo -n "Updating packages... "
 
   log run_as_root apt-get update
-  log run_as_root apt-get dist-upgrade -y
+  log run_as_root apt-get install -y --only-upgrade google-chrome-stable firefox
   log run_as_root apt-get autoremove -y
 
   echo "DONE"
