@@ -2,7 +2,7 @@
 
 set -eux
 
-ECLIPSE_VERSION="2024-09"
+ECLIPSE_VERSION="2025-09"
 
 # download eclipse: https://www.eclipse.org/downloads/packages/
 wget -c -O "eclipse.tar.gz" \
