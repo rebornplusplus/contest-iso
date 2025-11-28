@@ -14,7 +14,6 @@ apt remove -y --purge \
 	branding-ubuntu \
 	brltty \
 	btrfs-progs \
-	docbook-xml \
 	duplicity \
 	fonts-arphic-ukai \
 	fonts-arphic-uming \
@@ -22,8 +21,6 @@ apt remove -y --purge \
 	fonts-beng-extra \
 	fonts-deva \
 	fonts-deva-extra \
-	fonts-droid-fallback \
-	fonts-freefont-ttf \
 	fonts-gargi \
 	fonts-gubbi \
 	fonts-gujr \
@@ -54,8 +51,6 @@ apt remove -y --purge \
 	fonts-navilu \
 	fonts-noto-cjk \
 	fonts-noto-color-emoji \
-	fonts-noto-mono \
-	fonts-opensymbol \
 	fonts-orya \
 	fonts-orya-extra \
 	fonts-pagul \
@@ -154,9 +149,6 @@ apt remove -y --purge \
 	hyphen-pt-pt \
 	hyphen-ru \
 	ibus-chewing \
-	ibus-gtk:amd64 \
-	ibus-gtk3:amd64 \
-	ibus-gtk4:amd64 \
 	ibus-hangul \
 	ibus-libpinyin \
 	ibus-m17n \
@@ -198,7 +190,6 @@ apt remove -y --purge \
 	language-pack-zh-hans \
 	language-pack-zh-hans-base \
 	'libreoffice*' \
-	libsane-common \
 	mozc-server \
 	'mythes-*' \
 	orca \
