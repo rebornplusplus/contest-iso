@@ -107,6 +107,13 @@ check_vscode() {
   check_version "$version" "1.106.3"
 }
 
+check_gedit() {
+  local version cmd="gedit"
+  echo -n "Checking $cmd ($(which $cmd))... "
+  version="$($cmd --version | grep -Po "\d+\.\d+$")"
+  check_version "$version" "41.0"
+}
+
 check_geany() {
   local version cmd="geany"
   echo -n "Checking $cmd ($(which $cmd))... "
@@ -142,6 +149,7 @@ check_packages() {
   check_nano
   check_sublime_text
   check_vscode
+  check_gedit
   check_geany
   check_pycharm
   check_intellij
