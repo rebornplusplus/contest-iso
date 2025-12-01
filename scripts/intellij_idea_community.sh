@@ -2,7 +2,7 @@
 
 set -eux
 
-IDEA_VERSION='2023.3.4'
+IDEA_VERSION='2025.2.5'
 
 echo "\nInstalling IntelliJ IDEA Community Edition $IDEA_VERSION ...\n"
 

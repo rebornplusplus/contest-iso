@@ -62,7 +62,7 @@ check_java() {
   local version cmd="java"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | head -1 | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "17.0.12"
+  check_version "$version" "17.0.17"
 }
 
 check_python() {
@@ -97,14 +97,14 @@ check_sublime_text() {
   local version cmd="subl"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+$")"
-  check_version "$version" "4180"
+  check_version "$version" "4200"
 }
 
 check_vscode() {
   local version cmd="code"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version --no-sandbox --user-data-dir /tmp | grep -Po "^\d+\.\d+\.\d+$")"
-  check_version "$version" "1.94.2"
+  check_version "$version" "1.106.3"
 }
 
 check_gedit() {
@@ -127,7 +127,7 @@ check_pycharm() {
   cmd="$(find /opt/pycharm-*/bin/pycharm.sh)"
   echo -n "$(which $cmd))... "
   version="$($cmd --version | grep "PyCharm" | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "2023.3.3"
+  check_version "$version" "2025.2.4"
 }
 
 check_intellij() {
@@ -136,7 +136,7 @@ check_intellij() {
   cmd="$(find /opt/idea-*/bin/idea.sh)"
   echo -n "$(which $cmd))... "
   version="$($cmd --version | grep "IntelliJ" | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "2023.3.4"
+  check_version "$version" "2025.2.5"
 }
 
 check_packages() {
@@ -155,27 +155,6 @@ check_packages() {
   check_intellij
 }
 
-update_users() {
-  echo -n "Updating users... "
-
-  ADMIN_USER="admin"
-  ADMIN_PASS='$1$Rd490TmZ$kTNwQiGJFah4t/NRqUd1e1'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
-  run_as_root usermod --password $(echo $ADMIN_PASS) "$ADMIN_USER"
-  run_as_root getent shadow "$ADMIN_USER" | cut -d':' -f2 | grep -q $(echo $ADMIN_PASS)
-
-  TEAM_USER="main"
-  TEAM_PASS='$1$Rd490TmZ$MDQCGg2d6Q1sJrg80UViF0'   # openssl passwd -1 -salt Rd490TmZ 'PLAINTEXT'
-  run_as_root usermod --password $(echo $TEAM_PASS) "$TEAM_USER"
-  run_as_root getent shadow "$TEAM_USER" | cut -d':' -f2 | grep -q $(echo $TEAM_PASS)
-
-  MOCK_USER="mock"
-  MOCK_PASS='$1$Rd490TmZ$/CEXDyrKsM6Ylw6TuWum6.'   # openssl passwd -1 -salt Rd490TmZ 'mock'
-  run_as_root usermod --password $(echo $MOCK_PASS) "$MOCK_USER"
-  run_as_root getent shadow "$MOCK_USER" | cut -d':' -f2 | grep -q $(echo $MOCK_PASS)
-
-  echo "DONE"
-}
-
 enable_ssh() {
   echo -n "Starting ssh... "
 
@@ -190,7 +169,5 @@ enable_ssh() {
 
 update_packages
 check_packages
-
-update_users
 
 enable_ssh

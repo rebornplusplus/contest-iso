@@ -2,7 +2,7 @@
 
 set -eux
 
-PYCHARM_VERSION="2023.3.3"
+PYCHARM_VERSION="2025.2.4"
 PYCHARM_NAME="pycharm-community-${PYCHARM_VERSION}"
 
 echo "\nInstall Pycharm Community $PYCHARM_VERSION ..\n"
