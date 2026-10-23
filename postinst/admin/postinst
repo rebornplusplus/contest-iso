@@ -158,16 +158,33 @@ check_packages() {
 enable_ssh() {
   echo -n "Starting ssh... "
 
-  sudo systemctl enable ssh
-  sudo systemctl start ssh
+  run_as_root systemctl enable ssh
+  run_as_root systemctl start ssh
 
-  sudo ufw enable
-  sudo ufw allow ssh
+  run_as_root ufw enable
+  run_as_root ufw allow ssh
 
   echo "DONE"
+}
+
+restrict_ssh() {
+  # Allow only the ADMIN_USER to be able to SSH to other machines.
+  #
+  ADMIN_USER="admin"  # TODO: this is bad because there are now two definitions
+                      # of ADMIN_USER. We should think of somehow sourcing it
+                      # from vars.sh from the project root.
+  # Allow only the ADMIN USER to connect out on Port 22 (SSH)
+  run_as_root iptables -A OUTPUT -p tcp --dport 22 -m owner --uid-owner "$ADMIN_USER" -j ACCEPT
+  #
+  # Allow established connections (so incoming users don't get disconnected)
+  run_as_root iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  #
+  # Block all other local users from initiating outbound traffic on Port 22
+  run_as_root iptables -A OUTPUT -p tcp --dport 22 -j REJECT --reject-with icmp-port-unreachable
 }
 
 update_packages
 check_packages
 
 enable_ssh
+restrict_ssh
