@@ -2,11 +2,11 @@
 
 set -eux
 
-ECLIPSE_VERSION="2025-09"
+ECLIPSE_VERSION="2026-09"
 
 # download eclipse: https://www.eclipse.org/downloads/packages/
 wget -c -O "eclipse.tar.gz" \
-	"https://mirror.kakao.com/eclipse/technology/epp/downloads/release/${ECLIPSE_VERSION}/R/eclipse-java-${ECLIPSE_VERSION}-R-linux-gtk-x86_64.tar.gz"
+	"https://download.eclipse.org/technology/epp/downloads/release/${ECLIPSE_VERSION}/R/eclipse-java-${ECLIPSE_VERSION}-R-linux-gtk-x86_64.tar.gz"
 
 # extract and keep the files in /opt
 tar -zxvf eclipse.tar.gz
