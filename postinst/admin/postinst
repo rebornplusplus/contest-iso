@@ -48,77 +48,77 @@ check_gcc() {
   local version cmd="gcc"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
-  check_version "$version" "11.4.0"
+  check_version "$version" "16.0.1"
 }
 
 check_gpp() {
   local version cmd="g++"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
-  check_version "$version" "12.3.0"
+  check_version "$version" "16.0,1"
 }
 
 check_java() {
   local version cmd="java"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | head -1 | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "17.0.17"
+  check_version "$version" "17.0.20"
 }
 
 check_python() {
   local version cmd="python3"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+\.\d+\.\d+$")"
-  check_version "$version" "3.10.12"
+  check_version "$version" "3.12.3"
 }
 
 check_vim() {
   local version cmd="vim"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | head -1 | grep -Po "\d+\.\d+")"
-  check_version "$version" "8.2"
+  check_version "$version" "9.1"
 }
 
 check_emacs() {
   local version cmd="emacs"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | head -1 | grep -Po "\d+\.\d+$")"
-  check_version "$version" "27.1"
+  check_version "$version" "29.3"
 }
 
 check_nano() {
   local version cmd="nano"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | head -1 | grep -Po "\d+\.\d+$")"
-  check_version "$version" "6.2"
+  check_version "$version" "7.2"
 }
 
 check_sublime_text() {
   local version cmd="subl"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+$")"
-  check_version "$version" "4200"
+  check_version "$version" "4215"
 }
 
 check_vscode() {
   local version cmd="code"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version --no-sandbox --user-data-dir /tmp | grep -Po "^\d+\.\d+\.\d+$")"
-  check_version "$version" "1.106.3"
+  check_version "$version" "1.143.1"
 }
 
 check_gedit() {
   local version cmd="gedit"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | grep -Po "\d+\.\d+$")"
-  check_version "$version" "41.0"
+  check_version "$version" "46.2"
 }
 
 check_geany() {
   local version cmd="geany"
   echo -n "Checking $cmd ($(which $cmd))... "
   version="$($cmd --version | cut -d '(' -f 1 | grep -Po "\d+\.\d+")"
-  check_version "$version" "1.38"
+  check_version "$version" "2.0"
 }
 
 check_pycharm() {
@@ -127,7 +127,7 @@ check_pycharm() {
   cmd="$(find /opt/pycharm-*/bin/pycharm.sh)"
   echo -n "$(which $cmd))... "
   version="$($cmd --version | grep "PyCharm" | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "2025.2.4"
+  check_version "$version" "2026.2.3"
 }
 
 check_intellij() {
@@ -136,7 +136,7 @@ check_intellij() {
   cmd="$(find /opt/idea-*/bin/idea.sh)"
   echo -n "$(which $cmd))... "
   version="$($cmd --version | grep "IntelliJ" | grep -Po "\d+\.\d+\.\d+")"
-  check_version "$version" "2025.2.5"
+  check_version "$version" "2026.2.3"
 }
 
 check_packages() {
@@ -184,7 +184,8 @@ restrict_ssh() {
 }
 
 update_packages
-check_packages
 
 enable_ssh
 restrict_ssh
+
+check_packages
