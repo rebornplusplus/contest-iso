@@ -2,7 +2,7 @@
 
 set -eux
 
-# This script trims down the base Ubuntu 22.04 rootfs.
+# This script trims down the base Ubuntu 24.04 rootfs.
 # It removes unnecessary (for our purposes) packages like
 # thunderbird, libreoffice, rhythmbox, aisleriot etc.
 
