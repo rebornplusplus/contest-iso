@@ -16,7 +16,7 @@ trim.sh
 google_chrome.sh
 
 # --- Compilers ---
-gcc-12.sh
+gcc-16.sh
 python3.11.sh
 openjdk17.sh
 
