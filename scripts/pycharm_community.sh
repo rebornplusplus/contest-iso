@@ -2,12 +2,12 @@
 
 set -eux
 
-PYCHARM_VERSION="2025.2.4"
-PYCHARM_NAME="pycharm-community-${PYCHARM_VERSION}"
+PYCHARM_VERSION="2026.2.3"
+PYCHARM_NAME="pycharm-${PYCHARM_VERSION}"
 
-echo "\nInstall Pycharm Community $PYCHARM_VERSION ..\n"
+echo "\nInstall Pycharm $PYCHARM_VERSION ..\n"
 
-# download pycharm community edition
+# download pycharm edition
 # wget "data.services.jetbrains.com/products/download?code=PCC&platform=linux" -O pycharm.tar.gz
 wget -c "https://download.jetbrains.com/python/${PYCHARM_NAME}.tar.gz"
 
@@ -24,13 +24,13 @@ mv "${PYCHARM_NAME}" /opt
 rm "${PYCHARM_NAME}.tar.gz" actual_sha256sum.txt expected_sha256sum.txt
 
 # populate desktop entry
-cat > jetbrains-pycharm-ce.desktop << EOF
+cat > jetbrains-pycharm.desktop << EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=PyCharm Community Edition
+Name=PyCharm
 Icon=/opt/$PYCHARM_NAME/bin/pycharm.svg
-Exec="/opt/$PYCHARM_NAME/bin/pycharm.sh" %f
+Exec=/opt/$PYCHARM_NAME/bin/pycharm
 Comment=Python IDE for Developers
 Categories=Development;IDE;
 Terminal=false
@@ -39,4 +39,4 @@ StartupNotify=true
 EOF
 
 # copy the desktop entry to appropriate location
-mv jetbrains-pycharm-ce.desktop /usr/share/applications/
+mv jetbrains-pycharm.desktop /usr/share/applications/
