@@ -17,7 +17,7 @@ google_chrome.sh
 
 # --- Compilers ---
 gcc-16.sh
-python3.11.sh
+python3.14.sh
 openjdk17.sh
 
 # --- Editors ---
